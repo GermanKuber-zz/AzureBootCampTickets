@@ -1,0 +1,38 @@
+﻿@using AzureBootCampTickets.Entities.Entities
+
+@{
+    ViewBag.Title = "My Tickets";
+}
+
+<h2>My Tickets</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Access Code</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var t in ViewBag.MyTickets)
+    {
+        <tr>
+            <td>@t.ParentEvent.Name</td>
+            <td>@t.AccessCode</td>
+            <td>@t.Status</td>
+            @if (@t.Status == TicketStatus.Pending)
+            {
+                <td>@Html.ActionLink("Confirm and pay ticket", "ConfirmTicket", new { ticketId = t.Id }, new { @class = "btn btn-info btn-sm" })</td>
+            }
+            else
+            {
+                <td>@Html.ActionLink("Print ticket", "DisplayTicket", new { ticketId = t.Id }, new { @class = "btn btn-success btn-sm" })</td>
+            }
+            <td>@Html.ActionLink("Delete ticket", "DeleteTicket", new { ticketId = t.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Browse Events", "Events", null, new { @class = "btn btn-primary" })

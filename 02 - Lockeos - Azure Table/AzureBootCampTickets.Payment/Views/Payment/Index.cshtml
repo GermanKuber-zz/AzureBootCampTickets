@@ -1,0 +1,52 @@
+﻿@model AzureBootCampTickets.Payment.Models.PaymentViewModel
+
+@{
+    ViewBag.Title = "New Event";
+}
+
+@using (Html.BeginForm("ProcessPayment", "Payment", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>New Event</legend>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Credit Card Number</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.CardKey, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Fecha Vencimiento</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.CardExpiration, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Concepto</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.Concept, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Precio</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.Amount, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Concepto</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.Concept, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+        @Html.HiddenFor(x => x.CallbackUrl)
+        @Html.HiddenFor(x => x.TransactionKey)
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Pagar</button>
+            </div>
+        </div>
+    </fieldset>
+}
+

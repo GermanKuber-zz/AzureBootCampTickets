@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebTest Name="WebTest1" Id="be185b99-d6d4-41d8-9d8c-95aec8aafaa7" Owner="" Priority="2147483647" Enabled="True" CssProjectStructure="" CssIteration="" Timeout="0" WorkItemIds="" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010" Description="" CredentialUserName="" CredentialPassword="" PreAuthenticate="True" Proxy="default" StopOnError="False" RecordedResultFile="WebTest1.96f2bed3-2b28-434b-9a57-f242ae6379e7.rec.webtestresult" ResultsLocale="">
+  <Items>
+    <Request Method="GET" Guid="baa24f1a-50cf-42cf-98ad-1ceb4540cd87" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False" />
+    <Request Method="GET" Guid="f38a2c40-3243-45e0-bf12-54e050b482d9" Version="1.1" Url="http://api.bing.com/qsml.aspx" ThinkTime="5" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <QueryStringParameters>
+        <QueryStringParameter Name="query" Value="http%3A%2F%2Fazurebootcampticketsweb.azurewebsites.net" RecordedValue="http%3A%2F%2Fazurebootcampticketsweb.azurewebsites.net" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
+        <QueryStringParameter Name="maxwidth" Value="32765" RecordedValue="32765" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
+        <QueryStringParameter Name="rowheight" Value="20" RecordedValue="20" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
+        <QueryStringParameter Name="sectionHeight" Value="160" RecordedValue="160" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
+        <QueryStringParameter Name="FORM" Value="IESS02" RecordedValue="IESS02" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
+        <QueryStringParameter Name="market" Value="es-AR" RecordedValue="es-AR" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
+        <QueryStringParameter Name="pc" Value="EUPP_" RecordedValue="EUPP_" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
+      </QueryStringParameters>
+    </Request>
+    <Request Method="GET" Guid="1a66c1df-a654-4cb1-88b4-f6b266a1ae9e" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Account/Login" ThinkTime="5" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/" />
+      </Headers>
+      <ExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractHiddenFields, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="1" DisplayName="Extract Hidden Fields" Description="Extract all hidden fields from the response and place them into the test context.">
+          <RuleParameters>
+            <RuleParameter Name="Required" Value="True" />
+            <RuleParameter Name="HtmlDecode" Value="True" />
+          </RuleParameters>
+        </ExtractionRule>
+      </ExtractionRules>
+    </Request>
+    <Request Method="POST" Guid="a3fb9ce5-5770-4558-b9bc-be62e4f22a78" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Account/Login" ThinkTime="1" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="http://azurebootcampticketsweb.azurewebsites.net/" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Account/Login" />
+      </Headers>
+      <FormPostHttpBody>
+        <FormPostParameter Name="__RequestVerificationToken" Value="{{$HIDDEN1.__RequestVerificationToken}}" RecordedValue="dXI9xX3utYUTG6BAjnWfP1YWs1sccgiEwkEzKyH8H8Gl7ZJeP-b9q4kkQk5tvUpayEtlnlGzV_Hm91JmmwQbB_sb8zreoc_Pd15tn40vjyk1" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="Email" Value="demo@gmail.com" RecordedValue="demo@gmail.com" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="Password" Value="PasswordComplicado123!" RecordedValue="PasswordComplicado123!" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="RememberMe" Value="{{$HIDDEN1.RememberMe}}" RecordedValue="false" CorrelationBinding="" UrlEncode="True" />
+      </FormPostHttpBody>
+    </Request>
+    <Request Method="GET" Guid="6a8ae2ea-7720-4975-8b5d-0e441e905ef9" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/Events" ThinkTime="1" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/" />
+      </Headers>
+      <CorrelationExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="QueryStringParam2.eventId" DisplayName="" Description="">
+          <RuleParameters>
+            <RuleParameter Name="StartsWith" Value="?eventId=" />
+            <RuleParameter Name="EndsWith" Value="&quot;" />
+            <RuleParameter Name="Index" Value="0" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="UseRegularExpression" Value="False" />
+            <RuleParameter Name="HtmlDecode" Value="True" />
+            <RuleParameter Name="Required" Value="False" />
+          </RuleParameters>
+        </ExtractionRule>
+      </CorrelationExtractionRules>
+    </Request>
+    <Request Method="GET" Guid="5006b253-57d3-452b-bc59-8794123848bb" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/OrderTicket" ThinkTime="1" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/Events" />
+      </Headers>
+      <CorrelationExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="QueryStringParam1.ticketId" DisplayName="" Description="">
+          <RuleParameters>
+            <RuleParameter Name="StartsWith" Value="?ticketId=" />
+            <RuleParameter Name="EndsWith" Value="&quot;" />
+            <RuleParameter Name="Index" Value="0" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="UseRegularExpression" Value="False" />
+            <RuleParameter Name="HtmlDecode" Value="True" />
+            <RuleParameter Name="Required" Value="False" />
+          </RuleParameters>
+        </ExtractionRule>
+      </CorrelationExtractionRules>
+      <QueryStringParameters>
+        <QueryStringParameter Name="eventId" Value="d689fa58-6496-4a52-b0e9-2552388bfec0" RecordedValue="d689fa58-6496-4a52-b0e9-2552388bfec0" CorrelationBinding="{{QueryStringParam2.eventId}}" UrlEncode="False" UseToGroupResults="False" />
+      </QueryStringParameters>
+    </Request>
+    <Request Method="GET" Guid="a32ca3fe-66e8-479f-bd7d-09f328b0c47c" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/ConfirmTicket" ThinkTime="1" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="http://azurebootcampticketsweb.azurewebsites.net/Home/DoTicketPayment?ticketId=6951f350-1e4b-4541-baa3-1d16793fcf39" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/OrderTicket?eventId=d689fa58-6496-4a52-b0e9-2552388bfec0" />
+      </Headers>
+      <ExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractHiddenFields, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="1" DisplayName="Extract Hidden Fields" Description="Extract all hidden fields from the response and place them into the test context.">
+          <RuleParameters>
+            <RuleParameter Name="Required" Value="True" />
+            <RuleParameter Name="HtmlDecode" Value="True" />
+          </RuleParameters>
+        </ExtractionRule>
+      </ExtractionRules>
+      <CorrelationExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractFormField, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="FormPostParam1.submit" DisplayName="" Description="">
+          <RuleParameters>
+            <RuleParameter Name="Name" Value="submit" />
+            <RuleParameter Name="HtmlDecode" Value="True" />
+            <RuleParameter Name="Required" Value="False" />
+            <RuleParameter Name="Index" Value="0" />
+          </RuleParameters>
+        </ExtractionRule>
+      </CorrelationExtractionRules>
+      <QueryStringParameters>
+        <QueryStringParameter Name="ticketId" Value="6951f350-1e4b-4541-baa3-1d16793fcf39" RecordedValue="6951f350-1e4b-4541-baa3-1d16793fcf39" CorrelationBinding="{{QueryStringParam1.ticketId}}" UrlEncode="False" UseToGroupResults="False" />
+      </QueryStringParameters>
+    </Request>
+    <Request Method="POST" Guid="7505982d-d296-408a-9d54-f67dd9dacf4f" Version="1.1" Url="http://azurebootcampticketspaymentapi.azurewebsites.net/payment" ThinkTime="6" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/DoTicketPayment?ticketId=6951f350-1e4b-4541-baa3-1d16793fcf39" />
+      </Headers>
+      <ExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractHiddenFields, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="1" DisplayName="Extract Hidden Fields" Description="Extract all hidden fields from the response and place them into the test context.">
+          <RuleParameters>
+            <RuleParameter Name="Required" Value="True" />
+            <RuleParameter Name="HtmlDecode" Value="True" />
+          </RuleParameters>
+        </ExtractionRule>
+      </ExtractionRules>
+      <FormPostHttpBody>
+        <FormPostParameter Name="merchant" Value="{{$HIDDEN1.merchant}}" RecordedValue="" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="concept" Value="{{$HIDDEN1.concept}}" RecordedValue="Ticket for Azure BootCamp" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="amount" Value="{{$HIDDEN1.amount}}" RecordedValue="5" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="transactionKey" Value="{{$HIDDEN1.transactionKey}}" RecordedValue="6951f350-1e4b-4541-baa3-1d16793fcf39" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="callbackUrl" Value="{{$HIDDEN1.callbackUrl}}" RecordedValue="http://azurebootcampticketsweb.azurewebsites.net/Home/ConfirmTicketPayment" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="submit" Value="Proceed to Payment" RecordedValue="Proceed to Payment" CorrelationBinding="{{FormPostParam1.submit}}" UrlEncode="True" />
+      </FormPostHttpBody>
+    </Request>
+    <Request Method="POST" Guid="97301ca8-20c6-468a-bd06-06b2c1872ec2" Version="1.1" Url="http://azurebootcampticketspaymentapi.azurewebsites.net/Payment/ProcessPayment" ThinkTime="1" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="http://azurebootcampticketsweb.azurewebsites.net/Home/DisplayTicket?ticketId=6951f350-1e4b-4541-baa3-1d16793fcf39" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketspaymentapi.azurewebsites.net/payment" />
+      </Headers>
+      <FormPostHttpBody>
+        <FormPostParameter Name="__RequestVerificationToken" Value="{{$HIDDEN1.__RequestVerificationToken}}" RecordedValue="GL5sXBvnFbqmWEb0hMvpDZT9heDqlCCLgEHKOuMDS7i1me9UW6ErNUM7V7WihSr6YQPSIXfE85qEeBZsxm7nTJLz4dQCxCfpjt5bBNBTf601" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="CardKey" Value="234234234" RecordedValue="234234234" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="CardExpiration" Value="1/1/2017 12:00:00 AM" RecordedValue="1/1/2017 12:00:00 AM" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="CallbackUrl" Value="{{$HIDDEN1.CallbackUrl}}" RecordedValue="http://azurebootcampticketsweb.azurewebsites.net/Home/ConfirmTicketPayment" CorrelationBinding="" UrlEncode="True" />
+        <FormPostParameter Name="TransactionKey" Value="{{$HIDDEN1.TransactionKey}}" RecordedValue="6951f350-1e4b-4541-baa3-1d16793fcf39" CorrelationBinding="" UrlEncode="True" />
+      </FormPostHttpBody>
+    </Request>
+    <Request Method="GET" Guid="27afddb2-db43-4d85-8cbe-4a67d9e78a29" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/MyTickets" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/DisplayTicket?ticketId=6951f350-1e4b-4541-baa3-1d16793fcf39" />
+      </Headers>
+    </Request>
+    <Request Method="GET" Guid="05461841-5231-44ab-abd3-7c6751594c75" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/MyEvents" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/MyTickets" />
+      </Headers>
+    </Request>
+    <Request Method="GET" Guid="1a7ae9e5-c982-4f10-9db9-1ca828d2333c" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/Events" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/MyEvents" />
+      </Headers>
+    </Request>
+    <Request Method="GET" Guid="1c9d77bc-1be5-4cdb-a588-5c1b62a3e46e" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/MyEvents" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/Events" />
+      </Headers>
+    </Request>
+    <Request Method="GET" Guid="f2e15288-fa01-4010-96f5-8fa2ce37aa44" Version="1.1" Url="http://azurebootcampticketsweb.azurewebsites.net/Home/MyTickets" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://azurebootcampticketsweb.azurewebsites.net/Home/MyEvents" />
+      </Headers>
+    </Request>
+  </Items>
+  <ValidationRules>
+    <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidateResponseUrl, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Response URL" Description="Validates that the response URL after redirects are followed is the same as the recorded response URL.  QueryString parameters are ignored." Level="Low" ExectuionOrder="BeforeDependents" />
+    <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleResponseTimeGoal, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Response Time Goal" Description="Validates that the response time for the request is less than or equal to the response time goal as specified on the request.  Response time goals of zero will be ignored." Level="Low" ExectuionOrder="AfterDependents">
+      <RuleParameters>
+        <RuleParameter Name="Tolerance" Value="0" />
+      </RuleParameters>
+    </ValidationRule>
+  </ValidationRules>
+</WebTest>

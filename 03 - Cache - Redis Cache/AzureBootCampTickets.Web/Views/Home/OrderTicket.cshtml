@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Order a Ticket";
+}
+
+<h2>Order a Ticket</h2>
+
+<p>Please confirm and proceed to payment to finish the ticket reservation</p>
+
+    @Html.ActionLink("Confirm", "ConfirmTicket", new { ticketId = @ViewBag.TicketSummary.TicketId }, new { @class = "btn btn-primary" })
+    

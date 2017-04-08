@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "DoTicketPayment";
+}
+
+<h2>Payment Details</h2>
+<p>The ticket will cost you @ViewBag.TicketPrice. You will now proceed to PayFriend, our partner for payment processing.</p>
+
+<form action="@ViewBag.PaymentUrl" method="post">
+    <input type="hidden" name="merchant" value="@ViewBag.Merchant" />
+    <input type="hidden" name="concept" value="@ViewBag.TicketDescription" />
+    <input type="hidden" name="amount" value="@ViewBag.TicketPrice" />
+    <input type="hidden" name="transactionKey" value="@ViewBag.TicketId" />
+    <input type="hidden" name="callbackUrl" value="@ViewBag.CallbackUrl" />
+    <input type="submit" name="submit" value="Proceed to Payment" class="btn btn-primary" />
+</form>
