@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Ticket Details";
+}
+
+@if (@ViewBag.IsValid)
+{
+    <h2>Your Ticket</h2>
+    <div class="container bg-info">
+        <div class="row">
+            <div class="col-md-8"><h1>@ViewBag.EventName</h1></div>
+            <div class="col-md-4 text-right"><h2>@ViewBag.TicketAccessCode</h2></div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">1 ticket for @ViewBag.UserEmail</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">Ticket created using Azure Boot Camp Tickets, a free event management system.</div>
+        </div>
+    </div>
+}
+else
+{
+    <h2>We are sorry</h2>
+    <p>There is no ticket in the system with that ticket number.</p>
+}
+
