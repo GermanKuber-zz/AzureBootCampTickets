@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 
-//TODO : 01 creo un nuevo servicio de cache
+
 namespace AzureBootCampTickets.Contracts.Services
 {
     public interface ICacheService
@@ -8,5 +9,8 @@ namespace AzureBootCampTickets.Contracts.Services
         T GetFromCache<T>(string key, Func<T> missedCacheCall);
         T GetFromCache<T>(string key, Func<T> missedCacheCall, TimeSpan timeToLive);
         void InvalidateCache(string key);
+        Task<T> GetFromCacheAsync<T>(string key, Func<Task<T>> missedCacheCall);
+        Task<T> GetFromCacheAsync<T>(string key, Func<Task<T>> missedCacheCall, TimeSpan timeToLive);
+ 
     }
 }

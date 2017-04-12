@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AzureBootCampTickets.Entities.Entities;
 
 namespace AzureBootCampTickets.Contracts
@@ -11,11 +12,12 @@ namespace AzureBootCampTickets.Contracts
         void ConfirmTicket(Ticket ticket);
         void DeleteEvent(Event eventObj);
         void DeleteTicket(Ticket ticket);
-        List<Event> GetLiveEvents(DateTime currentDate);
-        List<Event> GetMyEvents(string userId);
-        List<Ticket> GetMyTickets(string userId);
-        Ticket GetTicket(string userId, Guid ticketId);
+        Task<List<Event>> GetLiveEventsAsync(DateTime currentDate);
+        
+        Task<List<Ticket>> GetMyTicketsAsync(string userId);
+        Task<Ticket> GetTicketAsync(string userId, Guid ticketId);
         void MakeEventLive(Event eventObj);
         void UpdateEventSeats(Event eventObj);
+        Task<List<Event>> GetMyEventsAsync(string userId);
     }
 }

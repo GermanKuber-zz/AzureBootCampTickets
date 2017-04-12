@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AzureBootCampTickets.Entities.Entities;
 using AzureBootCampTickets.Entities.Models;
 
@@ -10,7 +11,7 @@ namespace AzureBootCampTickets.Contracts.Services
         bool ConfirmTicket(Guid ticketId);
         bool DeleteTicket(Guid ticketId);
         TicketSummary PlaceOrder(Guid eventId, string userId);
-        Ticket GetTicket(string userId, Guid ticketId);
-        List<Ticket> GetMyTickets(string userId);
+        Task<Ticket> GetTicketAsync(string userId, Guid ticketId);
+        Task<List<Ticket>> GetMyTicketsAsync(string userId);
     }
 }

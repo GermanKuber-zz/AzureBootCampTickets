@@ -9,7 +9,6 @@ namespace AzureBootCampTickets.Entities.Entities
         Draft,
         Live
     }
-    //Todo : marco como serializable los objetos que voy a persistir en redis
     [Serializable]
     public class Event
     {
@@ -39,7 +38,7 @@ namespace AzureBootCampTickets.Entities.Entities
 
         public string Organizer { get; set; }
         public List<Ticket> Tickets { get; set; }
-        //TODO : 05 Agregamos fecha a los eventos
+
         public DateTime EventDate { get; set; }
     }
 }

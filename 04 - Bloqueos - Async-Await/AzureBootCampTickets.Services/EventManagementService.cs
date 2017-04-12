@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AzureBootCampTickets.Contracts;
 using AzureBootCampTickets.Contracts.Services;
 using AzureBootCampTickets.Data.Context.AzureBootCampTickets;
@@ -41,7 +42,7 @@ namespace AzureBootCampTickets.Services
                 _ctx.SaveChanges();
                 result = true;
 
-                //TODO 01 -  Actualizo el modelo de lectura
+        
                 _cloudContext.AddEvent(newEvent);
             }
             catch (Exception ex)
@@ -63,7 +64,6 @@ namespace AzureBootCampTickets.Services
             _ctx.SaveChanges();
             result = true;
 
-            //TODO 02 -  Actualizo el modelo de lectura
             _cloudContext.MakeEventLive(ev);
             return result;
         }
@@ -81,20 +81,21 @@ namespace AzureBootCampTickets.Services
             result = true;
 
 
-            //TODO 03 -  Actualizo el modelo de lectura
+     
             _cloudContext.DeleteEvent(ev);
 
             return result;
         }
-        //TODO 04 - Retorno mis eventos del modelo de lectura
-        public List<Event> GetMyEvents(string userId)
+     
+        //TODO : 05 - Convierto metodo Async
+        public async Task<List<Event>> GetMyEventsAsync(string userId)
         {
-            return _cloudContext.GetMyEvents(userId);
+            return await _cloudContext.GetMyEventsAsync(userId);
         }
         
-        public List<Event> GetLiveEvents(DateTime currentDate)
+        public async Task<List<Event>> GetLiveEventsAsync(DateTime currentDate)
         {
-            return _cloudContext.GetLiveEvents(DateTime.Now);
+            return await _cloudContext.GetLiveEventsAsync(DateTime.Now);
         }
     }
 }

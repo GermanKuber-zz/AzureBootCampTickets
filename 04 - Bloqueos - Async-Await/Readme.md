@@ -1,2 +1,1 @@
-1- Crear una cuenta de Storage en Azure.
-2- Copiar connection string al App.config
+1- Se agregan metodos Async/Await

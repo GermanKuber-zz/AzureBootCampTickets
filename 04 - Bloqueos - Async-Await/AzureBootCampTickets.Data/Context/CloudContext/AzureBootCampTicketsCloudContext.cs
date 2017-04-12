@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using AzureBootCampTickets.Contracts;
 using AzureBootCampTickets.Contracts.Services;
 using AzureBootCampTickets.Entities.Entities;
@@ -39,62 +40,64 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
                 throw;
             }
         }
-
-        public Ticket GetTicket(string userId, Guid ticketId)
+        //TODO : 06 - Convierto en Async
+        public async Task<Ticket> GetTicketAsync(string userId, Guid ticketId)
         {
-            Ticket ticket = null;
-
-            string partitionKey = userId.ToString();
-            string rowKey = ticketId.ToString();
-
-            TableOperation readOperation = TableOperation.Retrieve<TicketRead>(partitionKey, rowKey);
-
-            var result = _tableTickets.Execute(readOperation);
-            if (result.Result != null)
+            return await Task.Run(() =>
             {
-                var nosqlTicket = (TicketRead)result.Result;
-                ticket = nosqlTicket.ToTicket();
-            }
-            return ticket;
+                Ticket ticket = null;
+                string partitionKey = userId.ToString();
+                string rowKey = ticketId.ToString();
+
+                TableOperation readOperation = TableOperation.Retrieve<TicketRead>(partitionKey, rowKey);
+
+                var result = _tableTickets.Execute(readOperation);
+                if (result.Result != null)
+                {
+                    var nosqlTicket = (TicketRead)result.Result;
+                    ticket = nosqlTicket.ToTicket();
+                }
+                return ticket;
+            });
         }
 
-
-        public List<Ticket> GetMyTickets(string userId)
+        //TODO : 04 - Convierto a metodos Async
+        public async Task<List<Ticket>> GetMyTicketsAsync(string userId)
         {
             List<Ticket> tickets = new List<Ticket>();
             var key = GenerateMyTicketsKey(userId);
 
-            //TODO 05 - Utilizo servicio de cache
-            return _cacheService.GetFromCache<List<Ticket>>(key, () =>
-            {
-                string partitionKey = userId.ToString();
+            return await _cacheService.GetFromCacheAsync<List<Ticket>>(key, async () =>
+                       {
+                           string partitionKey = userId.ToString();
 
-                TableQuery<TicketRead> query =
-                    new TableQuery<TicketRead>().Where(TableQuery.GenerateFilterCondition("PartitionKey",
-                        QueryComparisons.Equal, userId));
-
-                var result = _tableTickets.ExecuteQuery(query);
-                foreach (TicketRead nosqlTicket in result)
-                {
-                    var ticket = nosqlTicket.ToTicket();
-                    tickets.Add(ticket);
-                }
-                return tickets;
-            });
+                           TableQuery<TicketRead> query =
+                               new TableQuery<TicketRead>().Where(TableQuery.GenerateFilterCondition("PartitionKey",
+                                   QueryComparisons.Equal, userId));
+                           //TODO : 07 - Execute query async
+                           TableQuerySegment<TicketRead> currentSegment = null;
+                           currentSegment = await _tableTickets.ExecuteQuerySegmentedAsync(query, currentSegment != null ? currentSegment.ContinuationToken : null);
+                           foreach (TicketRead nosqlTicket in currentSegment.Results)
+                           {
+                               var ticket = nosqlTicket.ToTicket();
+                               tickets.Add(ticket);
+                           }
+                           return tickets;
+                       });
         }
 
-        public List<Event> GetMyEvents(string userId)
+        public async Task<List<Event>> GetMyEventsAsync(string userId)
         {
             List<Event> events = new List<Event>();
             var key = GenerateMyEventsKey(userId);
-            return _cacheService.GetFromCache<List<Event>>(key, () =>
+            return await _cacheService.GetFromCacheAsync<List<Event>>(key, async () =>
             {
                 TableQuery<EventRead> query =
                     new TableQuery<EventRead>().Where(TableQuery.GenerateFilterCondition("PartitionKey",
                         QueryComparisons.Equal, userId));
-
-                var result = _tableMyEvents.ExecuteQuery(query);
-                foreach (EventRead nosqlEvent in result)
+                TableQuerySegment<EventRead> currentSegment = null;
+                currentSegment = await _tableMyEvents.ExecuteQuerySegmentedAsync(query, currentSegment != null ? currentSegment.ContinuationToken : null);
+                foreach (EventRead nosqlEvent in currentSegment.Results)
                 {
                     var eventObj = nosqlEvent.ToEvent();
                     events.Add(eventObj);
@@ -103,11 +106,11 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             });
         }
 
-        public List<Event> GetLiveEvents(DateTime currentDate)
+        public async Task<List<Event>> GetLiveEventsAsync(DateTime currentDate)
         {
             string year = currentDate.Year.ToString();
             var key = GenerateLiveEventsKey(year);
-            var yearEvents = _cacheService.GetFromCache<List<Event>>(key, () =>
+            var yearEvents = await _cacheService.GetFromCacheAsync<List<Event>>(key, async () =>
             {
 
                 List<Event> events = new List<Event>();
@@ -115,9 +118,9 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
                 string partitionKey = year;
 
                 TableQuery<EventRead> query = new TableQuery<EventRead>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey));
-
-                var result = _tableEvents.ExecuteQuery(query);
-                foreach (EventRead nosqlEvent in result)
+                TableQuerySegment<EventRead> currentSegment = null;
+                currentSegment = await _tableEvents.ExecuteQuerySegmentedAsync(query, currentSegment != null ? currentSegment.ContinuationToken : null);
+                foreach (EventRead nosqlEvent in currentSegment.Results)
                 {
                     if (nosqlEvent.EventDate >= currentDate)
                     {
@@ -143,7 +146,6 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation updateOperation = TableOperation.Merge(ticketToUpdate);
             _tableTickets.Execute(updateOperation);
 
-            //Todo : Invalido el cache
             _cacheService.InvalidateCache(GenerateMyTicketsKey(ticket.Attendee));
         }
 
@@ -165,7 +167,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             eventToAdd.Status = "Live";
             TableOperation addOperation = TableOperation.InsertOrReplace(eventToAdd);
             _tableEvents.Execute(addOperation);
-            //Todo : Invalido el cache
+
             _cacheService.InvalidateCache(GenerateLiveEventsKey(eventToAdd.PartitionKey));
             _cacheService.InvalidateCache(GenerateMyEventsKey(eventToAdd.Organizer));
 
@@ -184,7 +186,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation updateOperation = TableOperation.Merge(eventToUpdate);
             _tableEvents.Execute(updateOperation);
 
-            //Todo : Invalido el cache
+
             _cacheService.InvalidateCache(GenerateLiveEventsKey(partitionKey));
         }
 
@@ -197,7 +199,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation deleteOperation = TableOperation.Delete(ticketToDelete);
             _tableTickets.Execute(deleteOperation);
 
-            //Todo : Invalido el cache
+
             _cacheService.InvalidateCache(GenerateMyTicketsKey(partitionKey));
         }
 
@@ -210,7 +212,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation deleteOperation = TableOperation.Delete(eventToDelete);
             _tableMyEvents.Execute(deleteOperation);
 
-            //Todo : Invalido el cache
+
             _cacheService.InvalidateCache(GenerateMyEventsKey(partitionKey));
         }
 
@@ -220,7 +222,6 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation addOperation = TableOperation.InsertOrReplace(ticketToAdd);
             _tableTickets.Execute(addOperation);
 
-            //Todo : Invalido el cache
             _cacheService.InvalidateCache(GenerateMyTicketsKey(ticketToAdd.PartitionKey));
         }
 
@@ -243,19 +244,19 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
         }
         private static string GenerateLiveEventsKey(string year)
         {
-            var key = String.Format("LiveEvents-{0}", year);
+            var key = $"LiveEvents-{year}";
             return key;
         }
 
         private static string GenerateMyEventsKey(string userId)
         {
-            var key = String.Format("MyEvents-{0}", userId);
+            var key = $"MyEvents-{userId}";
             return key;
         }
 
         private static string GenerateMyTicketsKey(string userId)
         {
-            var key = String.Format("MyTickets-{0}", userId);
+            var key = $"MyTickets-{userId}";
             return key;
         }
     }

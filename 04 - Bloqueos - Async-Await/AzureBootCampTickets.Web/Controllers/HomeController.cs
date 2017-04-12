@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using AzureBootCampTickets.Contracts.Repositories;
 using AzureBootCampTickets.Contracts.Services;
@@ -35,18 +36,17 @@ namespace AzureBootCampTickets.Web.Controllers
         {
             return View();
         }
-
+        //TODO : 01 - Convierto los metodos en Async.
         [Authorize]
-        public ActionResult MyEvents()
+        public async  Task<ActionResult> MyEvents()
         {
-
-            ViewBag.MyEvents = _eventManagementService.GetMyEvents(this._identiService.GetUserId());
+            ViewBag.MyEvents =await  _eventManagementService.GetMyEventsAsync(this._identiService.GetUserId());
             return View();
         }
 
-        public ActionResult Events()
+        public async Task<ActionResult> Events()
         {
-            ViewBag.Events = _eventManagementService.GetLiveEvents(DateTime.Now);
+            ViewBag.Events =await _eventManagementService.GetLiveEventsAsync(DateTime.Now);
             return View();
         }
         [Authorize]
@@ -63,19 +63,18 @@ namespace AzureBootCampTickets.Web.Controllers
                 return RedirectToAction("MyEvents");
             else
                 return View();
-
         }
 
         [Authorize]
-        public ActionResult MyTickets()
+        public async Task<ActionResult> MyTickets()
         {
 
-            ViewBag.MyTickets = _orderService.GetMyTickets(_identiService.GetUserId());
+            ViewBag.MyTickets = await _orderService.GetMyTicketsAsync(_identiService.GetUserId());
             return View();
         }
 
         [Authorize]
-        public ActionResult OrderTicket(Guid eventId)
+        public async Task<ActionResult> OrderTicket(Guid eventId)
         {
 
             var temporaryTicketSummary = _orderService.PlaceOrder(eventId, _identiService.GetUserId());
@@ -84,10 +83,10 @@ namespace AzureBootCampTickets.Web.Controllers
         }
 
         [Authorize]
-        public ActionResult DisplayTicket(Guid ticketId)
+        public async Task<ActionResult> DisplayTicket(Guid ticketId)
         {
             var user = User.ApplicationUser();
-            var ticket = _orderService.GetTicket(user.Id, ticketId);
+            var ticket = await _orderService.GetTicketAsync(user.Id, ticketId);
             if (ticket == null)
             {
                 ViewBag.IsValid = false;
@@ -103,12 +102,11 @@ namespace AzureBootCampTickets.Web.Controllers
         }
 
         [Authorize]
-        public ActionResult ConfirmTicket(Guid ticketId)
+        public async Task<ActionResult> ConfirmTicket(Guid ticketId)
         {
             var user = User.ApplicationUser();
-            var ticket = _orderService.GetTicket(user.Id, ticketId);
+            var ticket = await _orderService.GetTicketAsync(user.Id, ticketId);
 
-            // TODO: Add the possibility of redirecting to payment if the ticket is not free
             if (ticket.TotalPrice == 0.0)
             {
 
@@ -129,10 +127,10 @@ namespace AzureBootCampTickets.Web.Controllers
             }
         }
 
-        public ActionResult DoTicketPayment(Guid ticketId)
+        public async Task<ActionResult> DoTicketPayment(Guid ticketId)
         {
            
-            var ticket = _orderService.GetTicket(_identiService.GetUserId(), ticketId);
+            var ticket = await _orderService.GetTicketAsync(_identiService.GetUserId(), ticketId);
 
             ViewBag.TicketPrice = ticket.TotalPrice;
             ViewBag.TicketId = ticketId;
@@ -146,12 +144,12 @@ namespace AzureBootCampTickets.Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ConfirmTicketPayment([Bind(Include = "result,transactionKey")] PaymentCallbackInfo paymentInfo)
+        public async Task<ActionResult> ConfirmTicketPayment([Bind(Include = "result,transactionKey")] PaymentCallbackInfo paymentInfo)
         {
             var ticketId = paymentInfo.TransactionKey;
        
 
-            var ticket = _orderService.GetTicket(_identiService.GetUserId(), ticketId);
+            var ticket = await  _orderService.GetTicketAsync(_identiService.GetUserId(), ticketId);
 
             if (paymentInfo.Result == "success")
             {
@@ -165,7 +163,7 @@ namespace AzureBootCampTickets.Web.Controllers
     
 
         [HttpGet]
-        public ActionResult ConfirmTicketPayment(Guid transactionKey, string result)
+        public async Task<ActionResult> ConfirmTicketPayment(Guid transactionKey, string result)
         {
             var ticket = _ticketsRepository.GetTicket(transactionKey);
 
@@ -180,21 +178,21 @@ namespace AzureBootCampTickets.Web.Controllers
         }
 
         [Authorize]
-        public ActionResult DeleteEvent(Guid eventId)
+        public async Task<ActionResult> DeleteEvent(Guid eventId)
         {
             var result = _eventManagementService.DeleteEvent(eventId);
             return RedirectToAction("MyEvents");
         }
 
         [Authorize]
-        public ActionResult DeleteTicket(Guid ticketId)
+        public async Task<ActionResult> DeleteTicket(Guid ticketId)
         {
             var result = _orderService.DeleteTicket(ticketId);
             return RedirectToAction("MyTickets");
         }
 
         [Authorize]
-        public ActionResult MakeEventLive(Guid eventId)
+        public async Task<ActionResult> MakeEventLive(Guid eventId)
         {
             var result = _eventManagementService.MakeEventLive(eventId);
             return RedirectToAction("MyEvents");

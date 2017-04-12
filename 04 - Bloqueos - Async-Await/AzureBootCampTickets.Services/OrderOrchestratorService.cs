@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AzureBootCampTickets.Contracts;
 using AzureBootCampTickets.Contracts.Services;
 using AzureBootCampTickets.Data.Context.AzureBootCampTickets;
@@ -36,8 +37,7 @@ namespace AzureBootCampTickets.Services
 
             _ctx.Tickets.Add(ticket);
             _ctx.SaveChanges();
-
-            //TODO : Actualizo Modelo de LEctura
+            
             _cloudContext.AddTicket(ticket);
 
             var ticketSummary = new TicketSummary()
@@ -68,8 +68,7 @@ namespace AzureBootCampTickets.Services
                 _ctx.Tickets.Remove(ticket);
             }
             _ctx.SaveChanges();
-
-            //TODO : Actualizo Modelo de LEctura
+            
             if (hasBeenConfirmed)
             {
                 _cloudContext.ConfirmTicket(ticket);
@@ -101,7 +100,7 @@ namespace AzureBootCampTickets.Services
                 _ctx.SaveChanges();
                 result = true;
             }
-            //TODO : Actualizo Modelo de LEctura
+    
             if (result)
             {
                 _cloudContext.DeleteTicket(ticket);
@@ -111,15 +110,15 @@ namespace AzureBootCampTickets.Services
         }
 
         
-        public List<Ticket> GetMyTickets(string userId)
+        public async Task<List<Ticket>> GetMyTicketsAsync(string userId)
         {
-            return _cloudContext.GetMyTickets(userId);
+            return await _cloudContext.GetMyTicketsAsync(userId);
         }
 
 
-        public Ticket GetTicket(string userId, Guid ticketId)
+        public async Task<Ticket> GetTicketAsync(string userId, Guid ticketId)
         {
-            return _cloudContext.GetTicket(userId, ticketId);
+            return await _cloudContext.GetTicketAsync(userId, ticketId);
         }
     }
 }

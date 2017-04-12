@@ -36,7 +36,7 @@ namespace AzureBootCampTickets.Web
             builder.RegisterType<TicketsRepository>().As<ITicketsRepository>();
             builder.RegisterType<OrderService>().As<IOrderService>();
             builder.RegisterType<EventManagementService>().As<IEventManagementService>();
-            //TODO 03 Registro la dependencia
+  
             builder.RegisterType<CacheService>().As<ICacheService>();
 
             builder.RegisterType<AzureBootCampTicketsCloudContext>().As<IAzureBootCampTicketsCloudContext>();
