@@ -107,10 +107,9 @@ namespace AzureBootCampTickets.Web.Controllers
 
             var ticket = _ticketsRepository.GetTicket(ticketId);
 
-            // TODO: Add the possibility of redirecting to payment if the ticket is not free
             if (ticket.TotalPrice == 0.0)
             {
-
+                //Sie evento es gratis
                 var confirmed = _orderService.ConfirmTicket(ticketId);
                 ViewBag.IsConfirmed = confirmed;
                 if (confirmed)
@@ -126,6 +125,7 @@ namespace AzureBootCampTickets.Web.Controllers
 
         public ActionResult DoTicketPayment(Guid ticketId)
         {
+            //Si el evento no es gratis redirijo a el proovedor de pago
             var ticket = _ticketsRepository.GetTicket(ticketId);
 
             ViewBag.TicketPrice = ticket.TotalPrice;
@@ -141,6 +141,7 @@ namespace AzureBootCampTickets.Web.Controllers
         [HttpGet]
     public ActionResult ConfirmTicketPayment(Guid transactionKey, string result)
         {
+            //Luego de pagar en el proovedor, este me envia a este método
             var ticket = _ticketsRepository.GetTicket(transactionKey);
 
             if (result == "success")
