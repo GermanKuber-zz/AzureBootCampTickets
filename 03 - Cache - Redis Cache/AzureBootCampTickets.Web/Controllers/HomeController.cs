@@ -108,7 +108,6 @@ namespace AzureBootCampTickets.Web.Controllers
             var user = User.ApplicationUser();
             var ticket = _orderService.GetTicket(user.Id, ticketId);
 
-            // TODO: Add the possibility of redirecting to payment if the ticket is not free
             if (ticket.TotalPrice == 0.0)
             {
 

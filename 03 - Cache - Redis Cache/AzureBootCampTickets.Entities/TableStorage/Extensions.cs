@@ -3,7 +3,6 @@ using AzureBootCampTickets.Entities.Entities;
 
 namespace AzureBootCampTickets.Entities.TableStorage
 {
-    //TODO : 07 Creamos Parser
     public static class Extensions
     {
         public static Ticket ToTicket(this TicketRead ticketAzure) 

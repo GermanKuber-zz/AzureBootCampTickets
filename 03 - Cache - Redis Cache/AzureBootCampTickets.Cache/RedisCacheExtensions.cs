@@ -5,7 +5,7 @@ using StackExchange.Redis;
 
 namespace AzureBootCampTickets.Cache
 {
-    //TODO : Creo metodo de extesion para serializar y deserializar
+    //TODO : 06 - Creo metodo de extesion para serializar y deserializar
     public static class RedisCacheExtensions
     {
         public static T Get<T>(this IDatabase cache, string key)

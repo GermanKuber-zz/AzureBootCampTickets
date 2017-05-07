@@ -41,7 +41,6 @@ namespace AzureBootCampTickets.Services
                 _ctx.SaveChanges();
                 result = true;
 
-                //TODO 01 -  Actualizo el modelo de lectura
                 _cloudContext.AddEvent(newEvent);
             }
             catch (Exception ex)
@@ -63,7 +62,6 @@ namespace AzureBootCampTickets.Services
             _ctx.SaveChanges();
             result = true;
 
-            //TODO 02 -  Actualizo el modelo de lectura
             _cloudContext.MakeEventLive(ev);
             return result;
         }
@@ -80,13 +78,10 @@ namespace AzureBootCampTickets.Services
             _ctx.SaveChanges();
             result = true;
 
-
-            //TODO 03 -  Actualizo el modelo de lectura
             _cloudContext.DeleteEvent(ev);
 
             return result;
         }
-        //TODO 04 - Retorno mis eventos del modelo de lectura
         public List<Event> GetMyEvents(string userId)
         {
             return _cloudContext.GetMyEvents(userId);

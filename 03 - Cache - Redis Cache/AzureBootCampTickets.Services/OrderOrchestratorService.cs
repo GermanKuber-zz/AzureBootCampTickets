@@ -37,7 +37,6 @@ namespace AzureBootCampTickets.Services
             _ctx.Tickets.Add(ticket);
             _ctx.SaveChanges();
 
-            //TODO : Actualizo Modelo de LEctura
             _cloudContext.AddTicket(ticket);
 
             var ticketSummary = new TicketSummary()
@@ -69,7 +68,6 @@ namespace AzureBootCampTickets.Services
             }
             _ctx.SaveChanges();
 
-            //TODO : Actualizo Modelo de LEctura
             if (hasBeenConfirmed)
             {
                 _cloudContext.ConfirmTicket(ticket);
@@ -101,7 +99,6 @@ namespace AzureBootCampTickets.Services
                 _ctx.SaveChanges();
                 result = true;
             }
-            //TODO : Actualizo Modelo de LEctura
             if (result)
             {
                 _cloudContext.DeleteTicket(ticket);

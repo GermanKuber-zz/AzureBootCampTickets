@@ -1,2 +1,2 @@
-1- Crear una cuenta de Storage en Azure.
-2- Copiar connection string al App.config
+1- Install-Package StackExchange.Redis
+2- Creo una cuenta de Redis Cache en Azure

@@ -3,7 +3,6 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace AzureBootCampTickets.Entities.TableStorage
 {
-    //TODO : 08 Creamos entidad de lectura para Tickets
     public class TicketRead: TableEntity
     {
         public string ParentEventName { get; set; }
