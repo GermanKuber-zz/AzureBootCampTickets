@@ -38,7 +38,7 @@ namespace AzureBootCampTickets.Entities.Entities
 
         public string Organizer { get; set; }
         public List<Ticket> Tickets { get; set; }
-        //TODO : 05 Agregamos fecha a los eventos
+        //TODO : 05 - Agregamos fecha a los eventos
         public DateTime EventDate { get; set; }
     }
 }

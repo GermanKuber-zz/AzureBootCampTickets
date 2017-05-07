@@ -11,6 +11,7 @@ using Microsoft.WindowsAzure.Storage.Table.Protocol;
 
 namespace AzureBootCampTickets.Data.Context.CloudContext
 {
+    //TODO : 09 - Impelemento un Contexto de Nube
     public class AzureBootCampTicketsCloudContext : IAzureBootCampTicketsCloudContext
     {
         private readonly CloudStorageAccount _storageAccount;
@@ -21,6 +22,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
 
         public AzureBootCampTicketsCloudContext()
         {
+            //Creo las referencias necesarias a los objetos de Azure
             _storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
             _tableClient = _storageAccount.CreateCloudTableClient();
             _tableTickets = _tableClient.GetTableReference("TicketsRead");
@@ -37,7 +39,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
                 throw;
             }
         }
-
+ 
         public Ticket GetTicket(string userId, Guid ticketId)
         {
             Ticket ticket = null;
@@ -56,7 +58,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             return ticket;
         }
 
-
+        //TODO : 10 - Obtengo mis tickets de Azure 
         public List<Ticket> GetMyTickets(string userId)
         {
             List<Ticket> tickets = new List<Ticket>();
@@ -88,7 +90,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             }
             return events;
         }
-
+        //TODO : 11 - Obtengo los eventos lives
         public List<Event> GetLiveEvents(DateTime currentDate)
         {
             string year = currentDate.Year.ToString();
@@ -110,7 +112,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             }
             return events;
         }
-
+        //TODO : 12 - Actualizo el ticket al estado de pagado
         public void ConfirmTicket(Ticket ticket)
         {
             string partitionKey = ticket.Attendee;
@@ -124,7 +126,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation updateOperation = TableOperation.Merge(ticketToUpdate);
             _tableTickets.Execute(updateOperation);
         }
-
+        //TODO : 13 - Pongo un evento en live actualizando su propiedad Status
         public void MakeEventLive(Event eventObj)
         {
             string partitionKey = eventObj.Organizer;
@@ -138,7 +140,6 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation updateOperation = TableOperation.Merge(eventToUpdate);
             _tableMyEvents.Execute(updateOperation);
 
-            // Add the new live event to All Events table
             var eventToAdd = eventObj.ToEventRead();
             eventToAdd.Status = "Live";
             TableOperation addOperation = TableOperation.InsertOrReplace(eventToAdd);
@@ -158,7 +159,7 @@ namespace AzureBootCampTickets.Data.Context.CloudContext
             TableOperation updateOperation = TableOperation.Merge(eventToUpdate);
             _tableEvents.Execute(updateOperation);
         }
-
+        //TODO : 14 - Elimino un ticket
         public void DeleteTicket(Ticket ticket)
         {
             string partitionKey = ticket.Attendee;
