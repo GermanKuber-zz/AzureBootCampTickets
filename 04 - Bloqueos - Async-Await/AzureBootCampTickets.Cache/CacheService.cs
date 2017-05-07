@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using AzureBootCampTickets.Contracts.Services;
 using StackExchange.Redis;
+using System.Configuration;
+using System.Linq;
 
 namespace AzureBootCampTickets.Cache
 {
@@ -54,8 +56,7 @@ namespace AzureBootCampTickets.Cache
 
         private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
         {
-            var multiplex =  ConnectionMultiplexer.Connect("azurebootcampstorageapi.redis.cache.windows.net:6380,password=ZBCYrzO8BlGp3doiB6PS5nHhG4ozGi/gFC5GWGJ56z4=,ssl=True,abortConnect=False,allowAdmin=true");
-       
+            var multiplex = ConnectionMultiplexer.Connect(ConfigurationManager.ConnectionStrings["CacheConnectionString"].ConnectionString);
             //var endpoints = multiplex.GetEndPoints();
             //var server = multiplex.GetServer(endpoints.First());
             //server.FlushDatabase();
