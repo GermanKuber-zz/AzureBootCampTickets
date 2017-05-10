@@ -4,4 +4,6 @@
 
 1. Azure Table
 2. Redis Cache
-3. Azync/Await
+3. Async/Await
+4. Colas
+5. Azure Traffic Manager
