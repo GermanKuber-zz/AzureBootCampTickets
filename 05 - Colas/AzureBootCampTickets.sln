@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBootCampTickets.Web", "AzureBootCampTickets.Web\AzureBootCampTickets.Web.csproj", "{0CFB1BE2-5A65-49FC-A182-6C16EE2007C3}"
 EndProject
@@ -29,10 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBootCampTickets.Cache", "AzureBootCampTickets.Cache\AzureBootCampTickets.Cache.csproj", "{6C605002-9EB9-405C-AA81-81436D039778}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{9876F19A-441B-4FA5-9F9A-5DC448244D40}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBootCampTickets.Worker", "AzureBootCampTickets.Worker\AzureBootCampTickets.Worker.csproj", "{ECE08BF6-4D1A-4CE0-9F13-74D4129A664F}"
 EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureBootCampTickets.Worker.Publish", "AzureBootCampTickets.Worker.Publish\AzureBootCampTickets.Worker.Publish.ccproj", "{C60D8B57-7084-4ED0-867F-55C63D850115}"
 EndProject
@@ -80,10 +76,6 @@ Global
 		{6C605002-9EB9-405C-AA81-81436D039778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C605002-9EB9-405C-AA81-81436D039778}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C605002-9EB9-405C-AA81-81436D039778}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECE08BF6-4D1A-4CE0-9F13-74D4129A664F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECE08BF6-4D1A-4CE0-9F13-74D4129A664F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECE08BF6-4D1A-4CE0-9F13-74D4129A664F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECE08BF6-4D1A-4CE0-9F13-74D4129A664F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C60D8B57-7084-4ED0-867F-55C63D850115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C60D8B57-7084-4ED0-867F-55C63D850115}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60D8B57-7084-4ED0-867F-55C63D850115}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -100,6 +92,5 @@ Global
 		{18CAC1C4-0646-40BF-8B4B-61DEB66AED94} = {3469D691-7956-4808-99B0-E607BA8DBDD2}
 		{6263C344-46E6-439F-9BD4-5CF6858F681E} = {C5C4B833-5920-4876-BFA5-DC6D2CE99EEE}
 		{87071736-EF9D-4BD3-B7E4-106ACDA3ABC1} = {C5C4B833-5920-4876-BFA5-DC6D2CE99EEE}
-		{ECE08BF6-4D1A-4CE0-9F13-74D4129A664F} = {9876F19A-441B-4FA5-9F9A-5DC448244D40}
 	EndGlobalSection
 EndGlobal
