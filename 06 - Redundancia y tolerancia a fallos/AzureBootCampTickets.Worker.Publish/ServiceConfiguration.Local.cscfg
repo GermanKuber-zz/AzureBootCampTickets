@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="AzureBootCampTickets.Worker.Publish" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="AzureBootCampTickets.Worker">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="706b92ce-fc9f-4a01-a15c-a442c5a85f10" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="germankuber" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEEzuzMnYz9S7SNSsQqno+bwwDQYJKoZIhvcNAQEBBQAEggEAnkFMl6ePfrH7+OEup8Ua5WeC88lgfNstLtPOCPJD0llTUP6YhvsRAQLNt23X6qRsQBPEwfBE47I93dfkEnBBeESPnbF2CuG2e3nNUKPx6/XuOmqZYseKB6OSewvocDTf5xATjoiV4UWBoURlVY0c5M7j2LL9/m2je1CQ/p3N4BH2gnrlrcJFQU5f9AukfHGlMR17e3xYD7rXA5LBsEegFTFrq1LE7DrVa9NKwcbkxMYr/7ABxWkPassYZb6mCwZs3tdXF+S4RhDP37XVEsuwSKhi22GLo9+l+rF/2iepjGFPnEaiV7rx3dIBXmhgo6A3gkQn7URFB/7NiWJfaQ1LizAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECONuKg6JL72agBCoYVT/stLfNtTjsvmiVlTd" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2018-05-10T23:59:59.0000000-03:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="E807631912E6A6DB80D483A7EEF9111A6536068E" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

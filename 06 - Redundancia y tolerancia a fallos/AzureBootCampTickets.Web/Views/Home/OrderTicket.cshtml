@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Order a Ticket";
+}
+
+<h2>Order a Ticket</h2>
+
+<p id="loadingMessage">Please wait while the ticket is being generated in the system ...</p>
+
+<div id="confirmationMessage" style="display:none">
+    <p>Please confirm and proceed to payment to finish the ticket reservation</p>
+
+    @Html.ActionLink("Confirm", "ConfirmTicket", new { ticketId = @ViewBag.TicketId }, new { @class = "btn btn-primary" })
+
+</div>
+
+@*TODO : 09 - Agrego una consulta a el ticket*@
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var requestUrl = "/Home/DoesTicketExist?ticketId=@ViewBag.TicketId";
+        $().ready(function () {
+            var checkForTicket = function () {
+                $.ajax(requestUrl, {
+                    cache: false,
+                    method: "GET"
+                }).done(function (data) {
+                    if (data === "True") {
+                        $("#loadingMessage").hide();
+                        $("#confirmationMessage").show();
+                    }
+                    else {
+                        setTimeout(checkForTicket, 7000);
+                    }
+                });
+            };
+            checkForTicket();
+        });
+
+    </script>
+}
